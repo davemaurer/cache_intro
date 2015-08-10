@@ -1,24 +1,21 @@
 <div class="container">
-  <div class="row">
-    "items-count-500-2015-04-12-13:11:11"
-    <% cache("items-count-#{Item.count}-#{Item.maximum(:updated_at)}") do %>
-    <div class="col-sm-12">
-      <h1><%= @items.count %> Items</h1>
-    </div>
-    <% end %>
+  <% cache cache_key_for(Item, "count") do %>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1><%= @items.count %> Items</h1>
+      </div>
   </div>
   <div class="row"></div>
   <!-- can also use cache("items-list") to do the same thing-->
-  <% cache(action: "index", action_suffix: "items-list") do %>
-    <% @items.each do |item| %>
-      <div class="col-sm-3">
-        <h5><%= item.name %></h5>
-        <%= link_to(image_tag(item.image_url), item_path(item)) %>
-        <p>
-          <%= item.description %>
-        </p>
-      </div>
-    <% end %>
+  <% @items.each do |item| %>
+    <div class="col-sm-3">
+      <h5><%= item.name %></h5>
+      <%= link_to(image_tag(item.image_url), item_path(item)) %>
+      <p>
+        <%= item.description %>
+      </p>
+    </div>
+  <% end %>
   <% end %>
 </div>
 

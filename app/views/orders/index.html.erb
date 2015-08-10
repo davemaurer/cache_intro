@@ -1,11 +1,13 @@
 <div class="container">
+  <!-- another approach to cache is using cache("items-list", expires_in: 15.minutes) do
+  , or expires_in: 30) do if you want seconds-->
+  <% cache("orders-list-#{Order.count}-#{Order.maximum(:updated_at)}") do %>
   <div class="row">
     <div class="col-sm-12">
       <h1><%= @orders.count %> Orders</h1>
     </div>
   </div>
   <div class="row"></div>
-  <% cache(action: "index", action_suffix: "orders-list") do %>
   <% @orders.each do |order| %>
     <div class="col-sm-12">
       <h2>Order <%= order.id %></h2>

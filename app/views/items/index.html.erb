@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <% cache(action: "index", action_suffix: "items-count") do %>
+    "items-count-500-2015-04-12-13:11:11"
+    <% cache("items-count-#{Item.count}-#{Item.maximum(:updated_at)}") do %>
     <div class="col-sm-12">
       <h1><%= @items.count %> Items</h1>
     </div>

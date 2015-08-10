@@ -22,3 +22,7 @@ module Storedom
     config.i18n.enforce_available_locales = true
   end
 end
+
+def clear_cache
+  Rails.cache.clear
+end
